@@ -42,7 +42,7 @@ export const ComeToMeWithContent = observer(() => {
     <ContainerContent sx={sx}>
       <div>
         <Title>
-          С чем ко мне<strong>&nbsp;обращаются</strong>
+          С чем ко мне<strong> обращаются</strong>
         </Title>
         <WrapperText>
           <li>Улучшение качества жизни;</li>
@@ -59,7 +59,7 @@ export const ComeToMeWithContent = observer(() => {
 
       <div>
         <Title>
-          С чем я <strong>не</strong>&nbsp;работаю
+          С чем я <strong>не</strong> работаю
         </Title>
         <WrapperText>
           <li>Зависимости (химические, алкогольные, игромания и пр);</li>

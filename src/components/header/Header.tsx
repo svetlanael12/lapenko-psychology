@@ -31,8 +31,8 @@ export const Header = observer(() => {
       <Container>
         <Navigate>
           <div>О себе</div>
-          <div>Материалы</div>
-          <div>Календарь</div>
+          {/* <div>Материалы</div> */}
+          {/* <div>Календарь</div> */}
           <div>Отзывы</div>
           {/* <div>Контакты</div> */}
         </Navigate>
