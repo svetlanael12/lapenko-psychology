@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,10 +10,18 @@ const settings = {
   infinite: true,
   slidesToScroll: 1,
   adaptiveHeight: true,
+  afterChange: () => {
+    // Принудительное обновление слайдера после загрузки
+    window.dispatchEvent(new Event("resize"));
+  },
+  onInit: () => {
+    // Инициализация при загрузке
+    window.dispatchEvent(new Event("resize"));
+  },
 };
 
 const Wrapper = styled.div`
-  width: 90%;
+  width: 80%;
   margin: auto;
 `;
 
@@ -24,6 +32,14 @@ export type SliderCustomProps = {
 
 export const SliderCustom = (props: SliderCustomProps) => {
   const { children, slidesToShow = 1 } = props;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.dispatchEvent(new Event("resize"));
+    }, 1000); // Небольшая задержка для загрузки изображений
+
+    return () => clearTimeout(timer);
+  }, [children]); // Зависимость от children
 
   return (
     <Wrapper>

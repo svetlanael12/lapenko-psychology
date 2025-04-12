@@ -30,13 +30,6 @@ const Box = styled.div`
   }
 `;
 
-const WrapperText = styled.div`
-  margin-top: 24px;
-  font-size: 24px;
-  /* font-size: 24px;
-  margin-bottom: 12px; */
-`;
-
 const containerContentsx: React.CSSProperties = {
   paddingTop: "48px",
   paddingBottom: "48px",
@@ -80,13 +73,6 @@ export const PrinciplesContent = observer(() => {
             </Description>
           </ContainerBorder>
         </Box>
-
-        {/* <WrapperText>
-          <strong>С чем ко мне обращаются:</strong>
-          <ul>
-            <li>Улучшение качества жизни</li>
-          </ul>
-        </WrapperText> */}
       </ContainerContent>
     </Container>
   );

@@ -51,6 +51,7 @@ export default function RootLayout(props: RootLayoutProps) {
             {children}
           </React.Fragment>
         </RootStyleRegistry>
+        <div id="modal-root"></div>
       </body>
     </html>
   );

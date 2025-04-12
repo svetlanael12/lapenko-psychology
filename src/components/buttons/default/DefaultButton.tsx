@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ButtonHTMLAttributes } from "react";
 
 import { Colors } from "@/types/colors";
 import styled from "@emotion/styled";
@@ -11,15 +11,24 @@ const Btn = styled.button`
   border-radius: 5px;
 
   cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
 `;
 
-export type DefaultButtonProps = {
-  onClick: VoidFunction;
+export type DefaultButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
   children: React.ReactNode;
 };
 
 export const DefaultButton = (props: DefaultButtonProps) => {
-  const { onClick, children } = props;
+  const { onClick, children, type = "button", ...otherProps } = props;
 
-  return <Btn onClick={onClick}>{children}</Btn>;
+  return (
+    <Btn onClick={onClick} type={type} {...otherProps}>
+      {children}
+    </Btn>
+  );
 };

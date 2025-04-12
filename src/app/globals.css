@@ -4,7 +4,7 @@
   box-sizing: border-box;
 
   font-family: "Sofia Sans", serif;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 body {
@@ -17,4 +17,33 @@ b {
   font-size: inherit;
 
   color: #a38165;
+}
+
+.slick-prev,
+.slick-next {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #4a4a4a !important;
+  font-size: 40px !important;
+}
+
+.slick-next {
+  right: -45 !important;
+}
+
+.slick-prev {
+  left: -45 !important;
+}
+
+/* Добавьте в ваш глобальный CSS */
+.slick-slider {
+  visibility: hidden;
+}
+
+.slick-initialized {
+  visibility: visible;
 }

@@ -1,11 +1,13 @@
 "use client";
 import { observer } from "mobx-react-lite";
-import styled from "@emotion/styled";
+import Image from "next/image";
+
 import { ContainerContent } from "@/components/containers/content/ContainerContent";
 import { ContainerImage } from "@/components/containers/image/ContainerImage";
-import Image from "next/image";
-import bg from "../../../assets/images/paper-about.jpg";
 import { useWindowSize } from "@/hooks/useWindowSize";
+import styled from "@emotion/styled";
+
+import bg from "../../../assets/images/paper-about.jpg";
 
 const Title = styled.h2`
   font-size: 48px;
@@ -31,7 +33,7 @@ export const AboutContent = observer(() => {
   return (
     <ContainerContent sx={containerContentsx}>
       <div>
-        <Title>Обо мне</Title>
+        <Title id="about">Обо мне</Title>
         <Description>
           Меня зовут Татьяна Лапенко, я{" "}
           <strong>психолог/клинический психолог</strong> и люблю свою профессию.

@@ -31,7 +31,7 @@ export const FeedbackContent = observer(() => {
 
   return (
     <ContainerContent sx={containerContentSx}>
-      <Title>Отзывы о моей работе</Title>
+      <Title id="feedback">Отзывы о моей работе</Title>
 
       <SliderCustom slidesToShow={1}>
         {reviews.map((review, index) => {
