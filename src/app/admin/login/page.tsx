@@ -69,7 +69,7 @@ const Login = () => {
             // window.location.href = "/"; // Перенаправление на главную страницу или другую страницу
           } catch (error) {
             console.error("An error occurred:", error);
-            setError("An error occurred while logging in");
+            setError("Произошла ошибка при входе в систему");
           }
         }}
       >

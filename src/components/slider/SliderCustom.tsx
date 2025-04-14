@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import React, { useEffect } from "react";
-import Slider, { InnerSlider, Settings } from "react-slick";
+import Slider, { Settings } from "react-slick";
 
 import styled from "@emotion/styled";
 
@@ -38,7 +38,7 @@ export const SliderCustom = (props: SliderCustomProps) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       window.dispatchEvent(new Event("resize"));
-    }, 1000); // Небольшая задержка для загрузки изображений
+    }, 2000); // Небольшая задержка для загрузки изображений
 
     return () => clearTimeout(timer);
   }, [children]); // Зависимость от children
