@@ -16,12 +16,17 @@ const SlotsContainer = styled.ul`
   display: flex;
   gap: 5;
   cursor: pointer;
+  flex-wrap: wrap;
 `;
 
 const SlotItem = styled.li`
   padding: 5px;
   border: 1px solid ${Colors.Coffee};
   border-radius: 3px;
+
+  list-style-type: none;
+  margin-right: 8px;
+  margin-bottom: 5px;
 
   &.selected {
     background-color: ${Colors.Coffee};

@@ -59,6 +59,10 @@ export const ArticlesContent = observer(() => {
     fetchData();
   }, []);
 
+  if (!articles.length) {
+    return <React.Fragment />;
+  }
+
   return (
     <Container>
       <ContainerContent sx={containerContentsx}>

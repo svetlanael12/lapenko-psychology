@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 
 import { LogoSvg } from "@/assets/svg/logo";
 import { useScrollToAnchor } from "@/hooks/useScrollToAnchor";
+import { useWindowSize } from "@/hooks/useWindowSize";
 import { Colors } from "@/types/colors";
 import styled from "@emotion/styled";
 
@@ -18,6 +19,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 
   padding: 20px;
 
@@ -39,10 +41,15 @@ const Navigate = styled.nav`
 
 export const Header = observer(() => {
   const scrollTo = useScrollToAnchor();
+  const { windowWidth } = useWindowSize();
 
   return (
     <React.Fragment>
-      <Container>
+      <Container
+        style={{
+          flexDirection: windowWidth < 400 ? "column" : "row",
+        }}
+      >
         <Link href="/">
           <LogoSvg width="40px" height="40px" fill="white" />
         </Link>

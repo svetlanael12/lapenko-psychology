@@ -29,7 +29,7 @@ export async function GET(request: Request) {
     if (date) {
       query = { date: new Date(date) };
     }
-    const slots = await AppointmentSlot.find(query);
+    const slots = await AppointmentSlot.find(query).sort({ date: -1 });
 
     const dates = new Map<string, SlotDTO[]>();
 
@@ -41,9 +41,32 @@ export async function GET(request: Request) {
       dates.set(new Date(slot.date).toLocaleDateString(), [slot, ...times]);
     });
 
+    // Сортируем каждый массив временных слотов по startTime
+    dates.forEach((times, date) => {
+      dates.set(
+        date,
+        times.sort((a, b) => {
+          // Преобразуем время в минуты для сравнения (например, "9:00" -> 540)
+          const timeToMinutes = (timeStr: string) => {
+            const [hours, minutes] = timeStr.split(":").map(Number);
+            return hours * 60 + minutes;
+          };
+
+          return timeToMinutes(a.startTime) - timeToMinutes(b.startTime);
+        })
+      );
+    });
+
+    // Сортируем сами даты (от новых к старым)
+    const sortedEntries = Array.from(dates.entries()).sort(
+      ([dateA], [dateB]) => {
+        return new Date(dateB).getTime() - new Date(dateA).getTime();
+      }
+    );
+
     // console.log({ slots, dates });
 
-    return NextResponse.json(Object.fromEntries(dates));
+    return NextResponse.json(Object.fromEntries(sortedEntries));
   } catch (error: any) {
     console.error(error);
     return NextResponse.json(

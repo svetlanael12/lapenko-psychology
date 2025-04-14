@@ -68,7 +68,7 @@ const ModalContainer = styled.div<ModalContainerProps>`
   width: 100%;
   height: auto;
   max-height: 90vh;
-  padding: ${({ isMobileViewport }) => (isMobileViewport ? "3rem" : "3.2rem")};
+  padding: ${({ isMobileViewport }) => (isMobileViewport ? "2rem" : "3.2rem")};
   border: gray;
 
   display: flex;

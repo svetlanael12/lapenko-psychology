@@ -1,16 +1,17 @@
 "use client";
+import { useEffect, useState } from "react";
+
 import { mobileViewportWidth } from "@/constants/common";
-import { useState, useEffect } from "react";
 
 export type UseWindowSizeType = (mobileViewport?: number) => {
-  windowWidth?: number;
+  windowWidth: number;
   isMobileWidth: boolean;
 };
 
 export const useWindowSize: UseWindowSizeType = (
   mobileViewport = mobileViewportWidth
 ) => {
-  const [windowWidth, setWindowWidth] = useState<number | undefined>(undefined);
+  const [windowWidth, setWindowWidth] = useState<number>(100);
 
   useEffect(() => {
     // Функция для обновления ширины окна

@@ -1,5 +1,6 @@
 // lib/email.ts
 import nodemailer from "nodemailer";
+
 import { SlotDTO } from "../models/AppointmentSlot";
 
 interface EmailParams {
@@ -10,7 +11,6 @@ interface EmailParams {
 }
 
 export async function sendConfirmationEmail(params: EmailParams) {
-  // console.log("Email ");
   const transporter = nodemailer.createTransport({
     host: "smtp.mail.ru",
     port: 465, // SSL
@@ -19,14 +19,13 @@ export async function sendConfirmationEmail(params: EmailParams) {
       user: process.env.EMAIL_LOGIN,
       pass: process.env.EMAIL_PASSWORD,
     },
-    tls: {
-      rejectUnauthorized: false, // Для локального тестирования (в продакшене лучше использовать валидный сертификат)
-    },
-
-    // ДЛЯ ПРОДА
-    // tls: {
-    //   minVersion: 'TLSv1.2' // Современный стандарт
-    // }
+    tls: process.env.DEBUG
+      ? {
+          rejectUnauthorized: false, // Для локального тестирования (в продакшене лучше использовать валидный сертификат)
+        }
+      : {
+          minVersion: "TLSv1.2", // Современный стандарт
+        },
   });
 
   const date = params.slot

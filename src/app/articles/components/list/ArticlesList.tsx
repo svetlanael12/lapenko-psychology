@@ -17,10 +17,13 @@ export const ArticlesList = observer((props: ArticlesListProps) => {
   return (
     <ContainerContent>
       <TitleH2>Полезные статьи</TitleH2>
+
       <div>
-        {articles.map((article, index) => (
-          <ArticleItem article={article} key={index} />
-        ))}
+        {articles.length
+          ? articles.map((article, index) => (
+              <ArticleItem article={article} key={index} />
+            ))
+          : "Пока тут ничего нет"}
       </div>
     </ContainerContent>
   );

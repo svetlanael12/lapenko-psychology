@@ -23,6 +23,15 @@ const BoxGoogleForm = styled.div`
   font-size: 16px;
 
   cursor: pointer;
+
+  word-wrap: break-word;
+  width: 100%;
+`;
+
+const InputWrapper = styled.div`
+  * {
+    font-size: 14px;
+  }
 `;
 
 export const RequestContentModal = observer(() => {
@@ -62,11 +71,14 @@ export const RequestContentModal = observer(() => {
             marginTop: "8px",
           }}
         >
-          <TextFieldWithFormik
-            name="firstName"
-            placeholder="Ваше ФИО (обязательное поле)"
-            fullWidth
-          />
+          <InputWrapper>
+            <TextFieldWithFormik
+              name="firstName"
+              placeholder="Ваше ФИО (обязательное поле)"
+              fullWidth
+            />
+          </InputWrapper>
+
           <TextFieldWithFormik
             name="phone"
             placeholder="Номер телефона"
@@ -78,7 +90,10 @@ export const RequestContentModal = observer(() => {
             оставить свои контактные данные для связи, чтобы мы подобрали
             удобное время вместе.
           </div>
-          <AppointmentTime />
+          <InputWrapper>
+            <AppointmentTime />
+          </InputWrapper>
+
           <DefaultButton
             onClick={() => {
               createRequest(values);

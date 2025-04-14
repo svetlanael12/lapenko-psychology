@@ -32,11 +32,11 @@ b {
 }
 
 .slick-next {
-  right: -45 !important;
+  right: -50 !important;
 }
 
 .slick-prev {
-  left: -45 !important;
+  left: -50 !important;
 }
 
 /* Добавьте в ваш глобальный CSS */

@@ -1,11 +1,13 @@
 "use client";
-import React, { useEffect } from "react";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+import React, { useEffect } from "react";
+import Slider, { InnerSlider, Settings } from "react-slick";
+
 import styled from "@emotion/styled";
 
-const settings = {
+const settings: Settings = {
   dots: true,
   infinite: true,
   slidesToScroll: 1,
@@ -21,7 +23,7 @@ const settings = {
 };
 
 const Wrapper = styled.div`
-  width: 80%;
+  width: 70%;
   margin: auto;
 `;
 
