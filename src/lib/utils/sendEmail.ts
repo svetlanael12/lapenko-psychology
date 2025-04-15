@@ -13,25 +13,27 @@ interface EmailParams {
 export async function sendConfirmationEmail(params: EmailParams) {
   const transporter = nodemailer.createTransport({
     host: "smtp.mail.ru",
-    port: 465, // SSL
-    secure: true,
+    port: 465,
+    secure: true, // true для 465 порта
     auth: {
       user: process.env.EMAIL_LOGIN,
       pass: process.env.EMAIL_PASSWORD,
     },
-    tls: Boolean(Number(process.env.DEBUG))
-      ? {
-          rejectUnauthorized: false, // Для локального тестирования (в продакшене лучше использовать валидный сертификат)
-        }
-      : {
-          minVersion: "TLSv1.2", // Современный стандарт
-        },
+    tls: Boolean(Number(process.env.DEBUG)) ? {
+      rejectUnauthorized: false, // Для локального тестирования (в продакшене лучше использовать валидный сертификат)
+    } : {
+      minVersion: 'TLSv1.2',
+      ciphers: 'HIGH:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!SRP:!CAMELLIA',
+      rejectUnauthorized: true // Всегда true в продакшене
+    },
+    connectionTimeout: 10000, // 10 секунд
+    greetingTimeout: 5000,
+    socketTimeout: 10000
   });
 
   const date = params.slot
-    ? `${new Date(params.slot.date).toLocaleDateString("ru-RU")} (${
-        params.slot.startTime
-      } - ${params.slot.endTime})`
+    ? `${new Date(params.slot.date).toLocaleDateString("ru-RU")} (${params.slot.startTime
+    } - ${params.slot.endTime})`
     : "Не указано";
 
   const mailOptions = {
