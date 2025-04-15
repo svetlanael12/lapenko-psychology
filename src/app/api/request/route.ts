@@ -22,12 +22,12 @@ export async function POST(request: Request) {
       slotIdSelected && (await AppointmentSlot.findById(slotIdSelected));
 
     const date = slot
-      ? `${new Date(slot.date).toLocaleDateString()} (${slot.startTime} - ${
+      ? `${new Date(slot.date).toLocaleDateString("ru-RU")} (${slot.startTime} - ${
           slot.endTime
         })`
       : "Не указано";
 
-    console.log({ date });
+    // console.log({ date });
     const comment = `Желаемая дата и время: ${date}` as string;
 
     // 1. Создаем заявку

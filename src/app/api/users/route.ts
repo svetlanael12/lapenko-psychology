@@ -20,15 +20,14 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  await dbConnect();
-  const body = await request.json();
-  const hashedPassword = await hashPassword(body.password);
-
-  const user = new User({
-    name: body.name,
-    password: hashedPassword,
-  });
-
-  await user.save();
-  return NextResponse.json(user, { status: 201 });
+  // убрала, чтобы не было никаких уязвимостей
+  // await dbConnect();
+  // const body = await request.json();
+  // const hashedPassword = await hashPassword(body.password);
+  // const user = new User({
+  //   name: body.name,
+  //   password: hashedPassword,
+  // });
+  // await user.save();
+  // return NextResponse.json(user, { status: 201 });
 }

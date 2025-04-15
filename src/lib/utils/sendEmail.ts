@@ -19,7 +19,7 @@ export async function sendConfirmationEmail(params: EmailParams) {
       user: process.env.EMAIL_LOGIN,
       pass: process.env.EMAIL_PASSWORD,
     },
-    tls: process.env.DEBUG
+    tls: Boolean(Number(process.env.DEBUG))
       ? {
           rejectUnauthorized: false, // Для локального тестирования (в продакшене лучше использовать валидный сертификат)
         }
@@ -29,7 +29,7 @@ export async function sendConfirmationEmail(params: EmailParams) {
   });
 
   const date = params.slot
-    ? `${new Date(params.slot.date).toLocaleDateString()} (${
+    ? `${new Date(params.slot.date).toLocaleDateString("ru-RU")} (${
         params.slot.startTime
       } - ${params.slot.endTime})`
     : "Не указано";

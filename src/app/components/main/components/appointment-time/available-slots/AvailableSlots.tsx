@@ -91,7 +91,7 @@ export const AvailableSlots: React.FC<AvailableSlotsProps> = ({ date }) => {
     return <p>Error: {error}</p>;
   }
 
-  const selectDate = new Date(date).toLocaleDateString();
+  const selectDate = new Date(date).toLocaleDateString("ru-RU");
 
   return (
     <div>

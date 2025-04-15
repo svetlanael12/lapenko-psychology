@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic"; // Отключает статическ
 const SlotsAll = async () => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/slots`); // Убедитесь, что URL правильный
   const slots: Record<string, SlotDTO[]> = await response.json(); // Преобразуем ответ в JSON
-  console.log({ slots });
+  // console.log({ slots });
   if (!slots) {
     return <React.Fragment />;
   }

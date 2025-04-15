@@ -37,7 +37,7 @@ export const QuillEditor = (props: QuillEditorProps) => {
     if (!quillRef.current) {
       return;
     }
-    console.log({ initialValues });
+    // console.log({ initialValues });
     // Инициализация Quill только один раз
     if (!quillInstance) {
       const quill = new Quill(quillRef.current, {

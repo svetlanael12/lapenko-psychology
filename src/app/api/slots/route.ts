@@ -34,11 +34,11 @@ export async function GET(request: Request) {
     const dates = new Map<string, SlotDTO[]>();
 
     slots.forEach((slot) => {
-      const key = new Date(slot.date).toLocaleDateString();
+      const key = new Date(slot.date).toLocaleDateString("ru-RU");
 
       const times = dates.get(key) || [];
 
-      dates.set(new Date(slot.date).toLocaleDateString(), [slot, ...times]);
+      dates.set(new Date(slot.date).toLocaleDateString("ru-RU"), [slot, ...times]);
     });
 
     // Сортируем каждый массив временных слотов по startTime

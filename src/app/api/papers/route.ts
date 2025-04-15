@@ -23,7 +23,7 @@ export async function GET() {
 export async function POST(request: Request) {
   await dbConnect();
   const body = await request.json();
-  console.log({ body });
+  // console.log({ body });
   const paper = new Paper(body);
   await paper.save();
 

@@ -40,7 +40,7 @@ export const FeedbackContent = observer(() => {
               <p style={{ textAlign: "end" }}>
                 <strong>
                   {review.authorName},&nbsp;
-                  {new Date(review.createdAt).toLocaleDateString()}
+                  {new Date(review.createdAt).toLocaleDateString("ru-RU")}
                 </strong>
               </p>
               <p>{review.text}</p>

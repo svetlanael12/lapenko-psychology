@@ -45,6 +45,8 @@ export const SlotsContent = observer((props: SlotsContentProps) => {
             if (!array) {
               return;
             }
+
+            // console.log({ date });
             return (
               <div key={index}>
                 <b>{date}</b>
