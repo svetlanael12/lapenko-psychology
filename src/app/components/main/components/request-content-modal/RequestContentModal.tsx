@@ -52,7 +52,10 @@ export const RequestContentModal = observer(() => {
         квалификация и правила конфиденциальности. Без подписанного согласия
         запись на сеанс не является действительной.
       </div>
-
+      <div style={{ margin: "12px auto" }}>
+        Стоимость онлайн-консультации 5000р (60 минут). Консультации проходят в
+        видеоформате в Whatsapp, Skype.
+      </div>
       <BoxGoogleForm
         onClick={() => {
           window.open(
