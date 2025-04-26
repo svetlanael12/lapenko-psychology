@@ -4,6 +4,7 @@ import "./globals.css";
 import { Sofia_Sans } from "next/font/google";
 import React from "react";
 
+import { Footer } from "@/components/footer/Footer";
 import { Header } from "@/components/header/Header";
 
 import RootStyleRegistry from "./emotion";
@@ -33,6 +34,9 @@ export const metadata: Metadata = {
     "навязчивые мысли",
     "Татьяна Лапенко",
   ],
+  icons: {
+    icon: [{ url: "./favicon.ico", sizes: "any" }],
+  },
 };
 
 type RootLayoutProps = Readonly<{
@@ -48,7 +52,9 @@ export default function RootLayout(props: RootLayoutProps) {
         <RootStyleRegistry>
           <React.Fragment>
             <Header />
-            {children}
+            <div style={{ minHeight: "100vh" }}>{children}</div>
+
+            <Footer />
           </React.Fragment>
         </RootStyleRegistry>
         <div id="modal-root"></div>

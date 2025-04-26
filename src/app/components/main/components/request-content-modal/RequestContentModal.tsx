@@ -59,7 +59,7 @@ export const RequestContentModal = observer(() => {
       <BoxGoogleForm
         onClick={() => {
           window.open(
-            "https://docs.google.com/forms/d/e/1FAIpQLSef3Ol7k4tjIleUJO4EyMnQZ1Ce0e4qj7MRhd5da9J-FAnNZQ/viewform"
+            "https://docs.google.com/forms/d/e/1FAIpQLSdEPHYmE18ROCXa0G0JcNODD76KAJwfqpAGINDyK_bk076Izw/viewform?usp=header"
           );
         }}
       >

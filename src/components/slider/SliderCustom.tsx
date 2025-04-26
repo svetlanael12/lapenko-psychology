@@ -1,31 +1,53 @@
 "use client";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
-import React, { useEffect } from "react";
-import Slider, { Settings } from "react-slick";
+import "swiper/css";
+import "swiper/css/navigation";
 
-import styled from "@emotion/styled";
+import React from "react";
+import { Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-const settings: Settings = {
-  dots: true,
-  infinite: true,
-  slidesToScroll: 1,
-  adaptiveHeight: true,
-  afterChange: () => {
-    // Принудительное обновление слайдера после загрузки
-    window.dispatchEvent(new Event("resize"));
-  },
-  onInit: () => {
-    // Инициализация при загрузке
-    window.dispatchEvent(new Event("resize"));
-  },
-};
+import { Colors } from "@/types/colors";
 
-const Wrapper = styled.div`
-  width: 70%;
-  margin: auto;
-`;
+const NextIcon = () => (
+  <div
+    className="swiper-button-next"
+    style={{
+      right: 0,
+      backgroundColor: Colors.DefaultText,
+      borderRadius: "50%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: "30px",
+      height: "30px",
+    }}
+  >
+    <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+      <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" />
+    </svg>
+  </div>
+);
+
+const PrevIcon = () => (
+  <div
+    className="swiper-button-prev"
+    style={{
+      left: 0,
+      backgroundColor: Colors.DefaultText,
+      borderRadius: "50%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: "30px",
+      height: "30px",
+    }}
+  >
+    <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+      <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" />
+    </svg>
+  </div>
+);
 
 export type SliderCustomProps = {
   children: React.ReactNode;
@@ -33,21 +55,24 @@ export type SliderCustomProps = {
 };
 
 export const SliderCustom = (props: SliderCustomProps) => {
-  const { children, slidesToShow = 1 } = props;
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      window.dispatchEvent(new Event("resize"));
-    }, 2000); // Небольшая задержка для загрузки изображений
-
-    return () => clearTimeout(timer);
-  }, [children]); // Зависимость от children
-
+  const { children } = props;
   return (
-    <Wrapper>
-      <Slider {...settings} slidesToShow={slidesToShow}>
-        {children}
-      </Slider>
-    </Wrapper>
+    <Swiper
+      spaceBetween={50}
+      slidesPerView={1}
+      autoHeight
+      loop
+      modules={[Navigation]}
+      navigation={{
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      }}
+      style={{ width: "90%", padding: "0 40px" }}
+    >
+      {React.Children.map(children, (child, index) => (
+        <SwiperSlide key={index}>{child}</SwiperSlide>
+      ))}
+      <PrevIcon /> <NextIcon />
+    </Swiper>
   );
 };

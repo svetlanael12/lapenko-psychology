@@ -39,26 +39,83 @@ const Navigate = styled.nav`
   }
 `;
 
+const BurgerButton = styled.button`
+  background: none;
+  border: none;
+  color: ${Colors.Eggshell};
+  font-size: 30px;
+  cursor: pointer;
+`;
+
+const ContainerMenuMobile = styled.div`
+  top: 85px;
+  right: 0;
+  position: absolute;
+  background-color: ${Colors.Coffee};
+  color: ${Colors.Eggshell};
+
+  padding: 40px;
+  border-radius: 5px;
+
+  nav {
+    display: flex;
+    flex-direction: column;
+
+    * {
+      font-size: 1.4rem;
+    }
+  }
+`;
+
 export const Header = observer(() => {
   const scrollTo = useScrollToAnchor();
-  const { windowWidth } = useWindowSize();
+  const { isMobileWidth } = useWindowSize();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleNavClick = (anchor: string, offset: number) => {
+    if (isMobileWidth) {
+      setIsMenuOpen(false);
+    }
+    scrollTo(anchor, offset);
+  };
+
+  useEffect(() => {
+    !isMobileWidth && setIsMenuOpen(false);
+  }, [isMobileWidth]);
+
+  const contentLinks = (
+    <Navigate>
+      <div onClick={() => handleNavClick("about", 250)}>Обо мне</div>
+      <div onClick={() => handleNavClick("feedback", 250)}>Отзывы</div>
+      <div onClick={() => handleNavClick("contacts", 250)}>Контакты</div>
+      <Link href="/articles" onClick={() => setIsMenuOpen(false)}>
+        Статьи
+      </Link>
+    </Navigate>
+  );
 
   return (
     <React.Fragment>
-      <Container
-        style={{
-          flexDirection: windowWidth < 400 ? "column" : "row",
-        }}
-      >
+      <Container>
         <Link href="/">
           <LogoSvg width="40px" height="40px" fill="white" />
         </Link>
 
-        <Navigate>
-          <div onClick={() => scrollTo("about", 250)}>Обо мне</div>
-          <div onClick={() => scrollTo("feedback", 250)}>Отзывы</div>
-          <Link href="/articles">Статьи</Link>
-        </Navigate>
+        {isMobileWidth ? (
+          <BurgerButton onClick={toggleMenu}>
+            {isMenuOpen ? "✕" : "☰"}
+          </BurgerButton>
+        ) : (
+          contentLinks
+        )}
+
+        {isMenuOpen && (
+          <ContainerMenuMobile>{contentLinks}</ContainerMenuMobile>
+        )}
       </Container>
     </React.Fragment>
   );

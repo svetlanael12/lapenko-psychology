@@ -24,7 +24,7 @@ export function useScrollToAnchor() {
           // Удаляем хэш после скролла
           setTimeout(() => {
             window.history.replaceState(null, "", window.location.pathname);
-          }, 1000);
+          }, 2000);
         };
 
         scroll();
@@ -51,7 +51,7 @@ export function useScrollToAnchor() {
           // Удаляем хэш после скролла
           setTimeout(() => {
             window.history.replaceState(null, "", window.location.pathname);
-          }, 1000);
+          }, 2000);
         }
       }
     };
